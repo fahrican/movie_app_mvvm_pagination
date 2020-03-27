@@ -1,0 +1,2 @@
+rootProject.name='Movie App MVVM with Pagination'
+include ':app'
