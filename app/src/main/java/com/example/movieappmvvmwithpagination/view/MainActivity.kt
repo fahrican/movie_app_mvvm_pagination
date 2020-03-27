@@ -1,7 +1,8 @@
-package com.example.movieappmvvmwithpagination
+package com.example.movieappmvvmwithpagination.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.movieappmvvmwithpagination.R
 
 class MainActivity : AppCompatActivity() {
 
