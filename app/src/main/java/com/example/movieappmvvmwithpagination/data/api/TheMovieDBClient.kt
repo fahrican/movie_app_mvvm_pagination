@@ -15,7 +15,7 @@ object TheMovieDBClient {
         val requestInterceptor = Interceptor { chain ->
             // Interceptor takes only one argument which is a lambda function
             val url: HttpUrl = chain.request()
-                .url()
+                .url
                 .newBuilder()
                 .addQueryParameter("api_key", API_KEY)
                 .build()
@@ -25,7 +25,7 @@ object TheMovieDBClient {
                 .url(url)
                 .build()
 
-            return@Interceptor chain.proceed(request) // explicitly returns a value from with @ annotation.
+            return@Interceptor chain.proceed(request)   // explicitly return a value from whit @ annotation. lambda always returns the value of the last expression implicitly
         }
         val okHttpClient: OkHttpClient = OkHttpClient.Builder()
             .addInterceptor(requestInterceptor)
