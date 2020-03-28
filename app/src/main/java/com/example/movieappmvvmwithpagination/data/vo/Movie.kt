@@ -7,6 +7,6 @@ data class Movie(
     @field:Json(name = "poster_path")
     val posterPath: String,
     @field:Json(name = "release_date")
-    val release_date: String,
+    val releaseDate: String,
     val title: String
 )
