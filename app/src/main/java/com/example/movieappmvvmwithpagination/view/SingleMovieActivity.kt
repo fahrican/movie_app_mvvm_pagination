@@ -27,10 +27,11 @@ class SingleMovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_movie)
 
+        val movieId: Int = intent.getIntExtra("id", 1)
         val apiService: ITheMovieDB = TheMovieDBClient.getClient()
         movieDetailsRepository = MovieDetailsRepository(apiService)
 
-        singleMovieViewModel = getViewModel(1)
+        singleMovieViewModel = getViewModel(movieId)
         singleMovieViewModel.movieDetails.observe(this, Observer {
             bindUI(it)
         })
