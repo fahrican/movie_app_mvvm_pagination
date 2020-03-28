@@ -11,10 +11,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        single_movie_btn.setOnClickListener {
-            val intent = Intent(this, SingleMovieActivity::class.java)
-            intent.putExtra("id", 419704)
-            startActivity(intent)
-        }
+
     }
 }
