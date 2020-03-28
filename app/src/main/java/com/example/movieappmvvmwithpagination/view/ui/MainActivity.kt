@@ -1,10 +1,9 @@
-package com.example.movieappmvvmwithpagination.view
+package com.example.movieappmvvmwithpagination.view.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.movieappmvvmwithpagination.R
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 

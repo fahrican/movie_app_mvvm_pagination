@@ -1,4 +1,4 @@
-package com.example.movieappmvvmwithpagination.view
+package com.example.movieappmvvmwithpagination.view.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
