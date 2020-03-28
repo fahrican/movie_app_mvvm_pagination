@@ -13,7 +13,7 @@ object TheMovieDBClient {
 
     fun getClient(): ITheMovieDB {
         val requestInterceptor = Interceptor { chain ->
-            // Interceptor takes only one argument which is a lambda function
+            // Interceptor takes only one argument which is a lambda function so parenthesis can be omitted
             val url: HttpUrl = chain.request()
                 .url
                 .newBuilder()
