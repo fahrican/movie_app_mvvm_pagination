@@ -85,7 +85,7 @@ class PopularMoviePagedListAdapter :
     }
 
     class MovieItemViewHolder(private val itemMovieBinding: ItemMovieBinding) :
-        RecyclerView.ViewHolder(itemMovieBinding.root) { // todo: use of data binding
+        RecyclerView.ViewHolder(itemMovieBinding.root) {
 
         fun bind(movie: Movie?, context: Context) {
             itemMovieBinding.movie = movie
@@ -98,7 +98,7 @@ class PopularMoviePagedListAdapter :
     }
 
     class NetworkStateItemViewHolder(private val itemNetworkStateBinding: ItemNetworkStateBinding) :
-        RecyclerView.ViewHolder(itemNetworkStateBinding.root) { // todo: use of data binding
+        RecyclerView.ViewHolder(itemNetworkStateBinding.root) {
 
         fun bind(networkSate: NetworkState?) {
             // item progressbar
