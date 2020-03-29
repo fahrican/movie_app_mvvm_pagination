@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import com.example.movieappmvvmwithpagination.data.repository.MoviePagedListRepository
-import com.example.movieappmvvmwithpagination.data.repository.NetworkSate
+import com.example.movieappmvvmwithpagination.data.repository.NetworkState
 import com.example.movieappmvvmwithpagination.data.vo.Movie
 import io.reactivex.disposables.CompositeDisposable
 
@@ -16,7 +16,7 @@ class MainViewModel(private val movieRepository: MoviePagedListRepository) : Vie
         movieRepository.fetchLiveMoviePagedList(compositeDisposable)
     }
 
-    val networkSate: LiveData<NetworkSate> by lazy {
+    val networkSate: LiveData<NetworkState> by lazy {
         movieRepository.getNetworkState()
     }
 

@@ -3,7 +3,7 @@ package com.example.movieappmvvmwithpagination.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.movieappmvvmwithpagination.data.repository.MovieDetailsRepository
-import com.example.movieappmvvmwithpagination.data.repository.NetworkSate
+import com.example.movieappmvvmwithpagination.data.repository.NetworkState
 import com.example.movieappmvvmwithpagination.data.vo.MovieDetails
 import io.reactivex.disposables.CompositeDisposable
 
@@ -18,7 +18,7 @@ class SingleMovieViewModel(
         movieRepository.fetchSingleMovieDetails(compositeDisposable, movieId)
     }
 
-    val networkSate: LiveData<NetworkSate> by lazy {
+    val networkSate: LiveData<NetworkState> by lazy {
         movieRepository.getMovieDetailsNetworkState()
     }
 

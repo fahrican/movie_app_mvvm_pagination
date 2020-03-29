@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movieappmvvmwithpagination.R
 import com.example.movieappmvvmwithpagination.data.api.POSTER_BASE_URL
-import com.example.movieappmvvmwithpagination.data.repository.NetworkSate
+import com.example.movieappmvvmwithpagination.data.repository.NetworkState
 import com.example.movieappmvvmwithpagination.data.vo.Movie
 import com.example.movieappmvvmwithpagination.view.ui.SingleMovieActivity
 import kotlinx.android.synthetic.main.item_movie.view.*
@@ -22,7 +22,7 @@ class PopularMoviePagedListAdapter(val context: Context) :
 
     val MOVIE_VIEW_TYPE = 1
     val NETWORK_VIEW_TYPE = 2
-    private var networkSate: NetworkSate? = null
+    private var networkSate: NetworkState? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -46,7 +46,7 @@ class PopularMoviePagedListAdapter(val context: Context) :
     }
 
     private fun hasExtraRow(): Boolean {
-        return networkSate != null && networkSate != NetworkSate.LOADED
+        return networkSate != null && networkSate != NetworkState.LOADED
     }
 
     override fun getItemCount(): Int {
@@ -91,18 +91,18 @@ class PopularMoviePagedListAdapter(val context: Context) :
 
     class NetworkStateItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(networkSate: NetworkSate?) {
+        fun bind(networkSate: NetworkState?) {
             // item progressbar
-            if (networkSate != null && networkSate == NetworkSate.LOADING) {
+            if (networkSate != null && networkSate == NetworkState.LOADING) {
                 itemView.item_progressbar.visibility = View.VISIBLE
             } else {
                 itemView.item_progressbar.visibility = View.GONE
             }
             // item error text
-            if (networkSate != null && networkSate == NetworkSate.ERROR) {
+            if (networkSate != null && networkSate == NetworkState.ERROR) {
                 itemView.item_error_text.text = networkSate.msg
                 itemView.item_error_text.visibility = View.VISIBLE
-            } else if (networkSate != null && networkSate == NetworkSate.END_OF_LIST) {
+            } else if (networkSate != null && networkSate == NetworkState.END_OF_LIST) {
                 itemView.item_error_text.text = networkSate.msg
                 itemView.item_error_text.visibility = View.VISIBLE
             } else {
@@ -111,7 +111,7 @@ class PopularMoviePagedListAdapter(val context: Context) :
         }
     }
 
-    fun setNetworkState(newNetworkState: NetworkSate) {
+    fun setNetworkState(newNetworkState: NetworkState) {
         val previousState = networkSate
         val hadExtraRow = hasExtraRow()
         networkSate = newNetworkState

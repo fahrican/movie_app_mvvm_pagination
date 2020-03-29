@@ -14,8 +14,8 @@ class MovieDetailsNetworkDataSource(
     private val compositeDisposable: CompositeDisposable
 ) {
 
-    private val networkSate = MutableLiveData<NetworkSate>()
-    val networkSateLD: LiveData<NetworkSate>
+    private val networkSate = MutableLiveData<NetworkState>()
+    val networkSateLD: LiveData<NetworkState>
         get() = networkSate
 
     private val downloadedMovieDetailsResponse = MutableLiveData<MovieDetails>()
@@ -23,7 +23,7 @@ class MovieDetailsNetworkDataSource(
         get() = downloadedMovieDetailsResponse
 
     fun fetchMovieDetails(movieId: Int) {
-        networkSate.postValue(NetworkSate.LOADING)
+        networkSate.postValue(NetworkState.LOADING)
         try {
             compositeDisposable.add(
                 apiService.getMovieDetails(movieId)
@@ -31,10 +31,10 @@ class MovieDetailsNetworkDataSource(
                     .subscribe(
                         {
                             downloadedMovieDetailsResponse.postValue(it)
-                            networkSate.postValue(NetworkSate.LOADED)
+                            networkSate.postValue(NetworkState.LOADED)
                         },
                         {
-                            networkSate.postValue(NetworkSate.ERROR)
+                            networkSate.postValue(NetworkState.ERROR)
                             Log.e("MovieDetailsNetworkDS", "${it.message}")
                         })
             )

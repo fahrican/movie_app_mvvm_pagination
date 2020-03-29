@@ -21,7 +21,7 @@ class MovieDetailsRepository(private val apiService: ITheMovieDB) {
         return movieDetailsNetworkDataSource.downloadedMovieDetailsResponseLD
     }
 
-    fun getMovieDetailsNetworkState(): LiveData<NetworkSate> {
+    fun getMovieDetailsNetworkState(): LiveData<NetworkState> {
         return movieDetailsNetworkDataSource.networkSateLD
     }
 }

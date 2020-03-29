@@ -12,7 +12,7 @@ import com.example.movieappmvvmwithpagination.R
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
 import com.example.movieappmvvmwithpagination.data.api.TheMovieDBClient
 import com.example.movieappmvvmwithpagination.data.repository.MoviePagedListRepository
-import com.example.movieappmvvmwithpagination.data.repository.NetworkSate
+import com.example.movieappmvvmwithpagination.data.repository.NetworkState
 import com.example.movieappmvvmwithpagination.view.adapter.PopularMoviePagedListAdapter
 import com.example.movieappmvvmwithpagination.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -51,10 +51,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.networkSate.observe(this, Observer {
             main_progressbar.visibility =
-                if (viewModel.checkIsListEmpty() && it == NetworkSate.LOADING) View.VISIBLE else View.GONE
+                if (viewModel.checkIsListEmpty() && it == NetworkState.LOADING) View.VISIBLE else View.GONE
 
             main_movie_error_text.visibility =
-                if (viewModel.checkIsListEmpty() && it == NetworkSate.ERROR) View.VISIBLE else View.GONE
+                if (viewModel.checkIsListEmpty() && it == NetworkState.ERROR) View.VISIBLE else View.GONE
 
             if (!viewModel.checkIsListEmpty()) {
                 movieAdapter.setNetworkState(it)

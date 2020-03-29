@@ -6,19 +6,19 @@ enum class Status {
     FAILED
 }
 
-class NetworkSate(val status: Status, val msg: String) {
+class NetworkState(val status: Status, val msg: String) {
 
     companion object {
-        val LOADED: NetworkSate
-        val LOADING: NetworkSate
-        val ERROR: NetworkSate
-        val END_OF_LIST: NetworkSate
+        val LOADED: NetworkState
+        val LOADING: NetworkState
+        val ERROR: NetworkState
+        val END_OF_LIST: NetworkState
 
         init {
-            LOADED = NetworkSate(Status.SUCCESS, "success")
-            LOADING = NetworkSate(Status.RUNNING, "running")
-            ERROR = NetworkSate(Status.FAILED, "Something went wrong!")
-            END_OF_LIST = NetworkSate(Status.FAILED, "You have reached the end.")
+            LOADED = NetworkState(Status.SUCCESS, "success")
+            LOADING = NetworkState(Status.RUNNING, "running")
+            ERROR = NetworkState(Status.FAILED, "Something went wrong!")
+            END_OF_LIST = NetworkState(Status.FAILED, "You have reached the end.")
         }
     }
 }

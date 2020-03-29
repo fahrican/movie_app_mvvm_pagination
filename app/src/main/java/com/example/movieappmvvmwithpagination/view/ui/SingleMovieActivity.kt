@@ -13,7 +13,7 @@ import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
 import com.example.movieappmvvmwithpagination.data.api.POSTER_BASE_URL
 import com.example.movieappmvvmwithpagination.data.api.TheMovieDBClient
 import com.example.movieappmvvmwithpagination.data.repository.MovieDetailsRepository
-import com.example.movieappmvvmwithpagination.data.repository.NetworkSate
+import com.example.movieappmvvmwithpagination.data.repository.NetworkState
 import com.example.movieappmvvmwithpagination.data.vo.MovieDetails
 import com.example.movieappmvvmwithpagination.viewmodel.SingleMovieViewModel
 import kotlinx.android.synthetic.main.activity_single_movie.*
@@ -38,10 +38,10 @@ class SingleMovieActivity : AppCompatActivity() {
 
         singleMovieViewModel.networkSate.observe(this, Observer {
             single_movie_progressbar.visibility =
-                if (it == NetworkSate.LOADING) View.VISIBLE else View.GONE
+                if (it == NetworkState.LOADING) View.VISIBLE else View.GONE
 
             single_movie_error_text.visibility =
-                if (it == NetworkSate.ERROR) View.VISIBLE else View.GONE
+                if (it == NetworkState.ERROR) View.VISIBLE else View.GONE
         })
     }
 
