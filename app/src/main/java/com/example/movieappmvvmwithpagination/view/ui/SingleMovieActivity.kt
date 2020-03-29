@@ -14,10 +14,8 @@ import com.example.movieappmvvmwithpagination.data.api.TheMovieDBClient
 import com.example.movieappmvvmwithpagination.data.constant.INTENT_ID
 import com.example.movieappmvvmwithpagination.data.repository.MovieDetailsRepository
 import com.example.movieappmvvmwithpagination.data.status.NetworkState
-import com.example.movieappmvvmwithpagination.data.model.MovieDetails
 import com.example.movieappmvvmwithpagination.databinding.ActivitySingleMovieBinding
 import com.example.movieappmvvmwithpagination.viewmodel.SingleMovieViewModel
-import kotlinx.android.synthetic.main.activity_single_movie.*
 
 class SingleMovieActivity : AppCompatActivity() {
 
@@ -27,7 +25,8 @@ class SingleMovieActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activitySingleMovieBinding = DataBindingUtil.setContentView(this, R.layout.activity_single_movie)
+        activitySingleMovieBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_single_movie)
 
         val movieId: Int = intent.getIntExtra(INTENT_ID, 1)
         val apiService: ITheMovieDB = TheMovieDBClient.getClient()
@@ -44,17 +43,17 @@ class SingleMovieActivity : AppCompatActivity() {
 
     private fun observeNetworkState() {
         singleMovieViewModel.networkState.observe(this, Observer {
-            single_movie_progressbar.visibility =
+            activitySingleMovieBinding.singleMovieProgressbar.visibility =
                 if (it == NetworkState.LOADING) View.VISIBLE else View.GONE
 
-            single_movie_error_text.visibility =
+            activitySingleMovieBinding.singleMovieErrorText.visibility =
                 if (it == NetworkState.ERROR) View.VISIBLE else View.GONE
         })
     }
 
     private fun observeMovieDetails() {
         singleMovieViewModel.movieDetails.observe(this, Observer {
-            bindUI(it)
+            activitySingleMovieBinding.md = it
         })
     }
 
@@ -65,9 +64,5 @@ class SingleMovieActivity : AppCompatActivity() {
                 return SingleMovieViewModel(movieDetailsRepository, movieId) as T
             }
         })[SingleMovieViewModel::class.java]
-    }
-
-    private fun bindUI(movieDetails: MovieDetails) { // todo: use data binding
-        activitySingleMovieBinding.md = movieDetails
     }
 }
