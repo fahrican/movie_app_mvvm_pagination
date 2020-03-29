@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,9 +15,9 @@ import com.example.movieappmvvmwithpagination.data.constant.INTENT_ID
 import com.example.movieappmvvmwithpagination.data.constant.POSTER_BASE_URL
 import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.data.model.Movie
+import com.example.movieappmvvmwithpagination.databinding.ItemNetworkStateBinding
 import com.example.movieappmvvmwithpagination.view.ui.SingleMovieActivity
 import kotlinx.android.synthetic.main.item_movie.view.*
-import kotlinx.android.synthetic.main.item_network_state.view.*
 
 class PopularMoviePagedListAdapter :
     PagedListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallback()) {
@@ -35,8 +36,13 @@ class PopularMoviePagedListAdapter :
             view = layoutInflater.inflate(R.layout.item_movie, parent, false)
             MovieItemViewHolder(view)
         } else {
-            view = layoutInflater.inflate(R.layout.item_network_state, parent, false)
-            NetworkStateItemViewHolder(view)
+            val itemNetworkStateBinding: ItemNetworkStateBinding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.item_network_state,
+                parent,
+                false
+            )
+            NetworkStateItemViewHolder(itemNetworkStateBinding)
         }
     }
 
@@ -93,25 +99,25 @@ class PopularMoviePagedListAdapter :
         }
     }
 
-    class NetworkStateItemViewHolder(view: View) :
-        RecyclerView.ViewHolder(view) { // todo: use of data binding
+    class NetworkStateItemViewHolder(private val itemNetworkStateBinding: ItemNetworkStateBinding) :
+        RecyclerView.ViewHolder(itemNetworkStateBinding.root) { // todo: use of data binding
 
         fun bind(networkSate: NetworkState?) {
             // item progressbar
             if (networkSate != null && networkSate == NetworkState.LOADING) {
-                itemView.item_progressbar.visibility = View.VISIBLE
+                itemNetworkStateBinding.itemProgressbar.visibility = View.VISIBLE
             } else {
-                itemView.item_progressbar.visibility = View.GONE
+                itemNetworkStateBinding.itemProgressbar.visibility = View.GONE
             }
             // item error text
             if (networkSate != null && networkSate == NetworkState.ERROR) {
-                itemView.item_error_text.text = networkSate.msg
-                itemView.item_error_text.visibility = View.VISIBLE
+                itemNetworkStateBinding.itemErrorText.text = networkSate.msg
+                itemNetworkStateBinding.itemErrorText.visibility = View.VISIBLE
             } else if (networkSate != null && networkSate == NetworkState.END_OF_LIST) { // todo: check why "You have reached the end" is not shown
-                itemView.item_error_text.text = networkSate.msg
-                itemView.item_error_text.visibility = View.VISIBLE
+                itemNetworkStateBinding.itemErrorText.text = networkSate.msg
+                itemNetworkStateBinding.itemErrorText.visibility = View.VISIBLE
             } else {
-                itemView.item_error_text.visibility = View.GONE
+                itemNetworkStateBinding.itemErrorText.visibility = View.GONE
             }
         }
     }
