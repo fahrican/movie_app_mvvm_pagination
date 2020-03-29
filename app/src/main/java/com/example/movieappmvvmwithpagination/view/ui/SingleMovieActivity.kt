@@ -42,7 +42,7 @@ class SingleMovieActivity : AppCompatActivity() {
     }
 
     private fun observeNetworkState() {
-        singleMovieViewModel.networkSate.observe(this, Observer {
+        singleMovieViewModel.networkState.observe(this, Observer {
             single_movie_progressbar.visibility =
                 if (it == NetworkState.LOADING) View.VISIBLE else View.GONE
 
