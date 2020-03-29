@@ -1,4 +1,4 @@
-package com.example.movieappmvvmwithpagination.data.vo
+package com.example.movieappmvvmwithpagination.data.vo // todo: rename package to model
 
 import com.squareup.moshi.Json
 

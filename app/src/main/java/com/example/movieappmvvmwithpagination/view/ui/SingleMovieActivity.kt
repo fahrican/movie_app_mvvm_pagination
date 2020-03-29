@@ -32,11 +32,11 @@ class SingleMovieActivity : AppCompatActivity() {
         movieDetailsRepository = MovieDetailsRepository(apiService)
 
         singleMovieViewModel = getViewModel(movieId)
-        singleMovieViewModel.movieDetails.observe(this, Observer {
+        singleMovieViewModel.movieDetails.observe(this, Observer {// todo: create separate method
             bindUI(it)
         })
 
-        singleMovieViewModel.networkSate.observe(this, Observer {
+        singleMovieViewModel.networkSate.observe(this, Observer {// todo: create separate method
             single_movie_progressbar.visibility =
                 if (it == NetworkState.LOADING) View.VISIBLE else View.GONE
 
@@ -45,7 +45,7 @@ class SingleMovieActivity : AppCompatActivity() {
         })
     }
 
-    private fun getViewModel(movieId: Int): SingleMovieViewModel {
+    private fun getViewModel(movieId: Int): SingleMovieViewModel { // todo: use viewModel()
         return ViewModelProviders.of(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
@@ -54,7 +54,7 @@ class SingleMovieActivity : AppCompatActivity() {
         })[SingleMovieViewModel::class.java]
     }
 
-    private fun bindUI(movieDetails: MovieDetails) {
+    private fun bindUI(movieDetails: MovieDetails) { // todo: use data binding
         single_movie_title.text = movieDetails.title
         single_movie_sub_title.text = movieDetails.tagline
         single_movie_info.text = movieDetails.overview

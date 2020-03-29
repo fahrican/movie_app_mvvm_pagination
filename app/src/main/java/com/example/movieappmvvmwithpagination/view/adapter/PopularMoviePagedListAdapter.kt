@@ -17,7 +17,7 @@ import com.example.movieappmvvmwithpagination.view.ui.SingleMovieActivity
 import kotlinx.android.synthetic.main.item_movie.view.*
 import kotlinx.android.synthetic.main.item_network_state.view.*
 
-class PopularMoviePagedListAdapter(val context: Context) :
+class PopularMoviePagedListAdapter(val context: Context) : // todo: get rid of context as argument
     PagedListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallback()) {
 
     val MOVIE_VIEW_TYPE = 1
@@ -72,7 +72,7 @@ class PopularMoviePagedListAdapter(val context: Context) :
         }
     }
 
-    class MovieItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class MovieItemViewHolder(view: View) : RecyclerView.ViewHolder(view) { // todo: use of data binding
 
         fun bind(movie: Movie?, context: Context) {
             itemView.cv_movie_title.text = movie?.title
@@ -89,7 +89,7 @@ class PopularMoviePagedListAdapter(val context: Context) :
         }
     }
 
-    class NetworkStateItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class NetworkStateItemViewHolder(view: View) : RecyclerView.ViewHolder(view) { // todo: use of data binding
 
         fun bind(networkSate: NetworkState?) {
             // item progressbar
@@ -102,7 +102,7 @@ class PopularMoviePagedListAdapter(val context: Context) :
             if (networkSate != null && networkSate == NetworkState.ERROR) {
                 itemView.item_error_text.text = networkSate.msg
                 itemView.item_error_text.visibility = View.VISIBLE
-            } else if (networkSate != null && networkSate == NetworkState.END_OF_LIST) {
+            } else if (networkSate != null && networkSate == NetworkState.END_OF_LIST) { // todo: could be one check
                 itemView.item_error_text.text = networkSate.msg
                 itemView.item_error_text.visibility = View.VISIBLE
             } else {

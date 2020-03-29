@@ -6,9 +6,9 @@ enum class Status {
     FAILED
 }
 
-class NetworkState(val status: Status, val msg: String) {
+class NetworkState(val status: Status, val msg: String) { // todo: move class in separate package status
 
-    companion object {
+    companion object { // todo: use joined assignment
         val LOADED: NetworkState
         val LOADING: NetworkState
         val ERROR: NetworkState

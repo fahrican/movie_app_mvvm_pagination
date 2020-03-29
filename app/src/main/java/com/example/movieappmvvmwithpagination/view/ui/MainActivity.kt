@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         val movieAdapter = PopularMoviePagedListAdapter(this)
         val gridLayoutManager = GridLayoutManager(this, 3)
 
-        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() { // todo: create separate method
             override fun getSpanSize(position: Int): Int {
                 val viewType = movieAdapter.getItemViewType(position)
                 // MOVIE_VIEW_TYPE will occupy 1 out of 3 span
@@ -41,15 +41,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        main_rv.layoutManager = gridLayoutManager
+        main_rv.layoutManager = gridLayoutManager // todo: create separate method for main_rv
         main_rv.setHasFixedSize(true)
         main_rv.adapter = movieAdapter
 
-        viewModel.moviePagedList.observe(this, Observer {
+        viewModel.moviePagedList.observe(this, Observer { // todo: create separate method
             movieAdapter.submitList(it)
         })
 
-        viewModel.networkSate.observe(this, Observer {
+        viewModel.networkSate.observe(this, Observer { // todo: create separate method
             main_progressbar.visibility =
                 if (viewModel.checkIsListEmpty() && it == NetworkState.LOADING) View.VISIBLE else View.GONE
 
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getViewModel(): MainViewModel {
-        return ViewModelProviders.of(this, object : ViewModelProvider.Factory {
+        return ViewModelProviders.of(this, object : ViewModelProvider.Factory { // todo: use viewModel()
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return MainViewModel(movieRepository) as T
