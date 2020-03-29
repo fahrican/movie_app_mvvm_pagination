@@ -41,11 +41,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        main_rv.layoutManager = gridLayoutManager // todo: create separate method for main_rv
-        main_rv.setHasFixedSize(true)
-        main_rv.adapter = movieAdapter
+        setUpRecyclerView(gridLayoutManager, movieAdapter)
 
         observeLiveData(movieAdapter)
+    }
+
+    private fun setUpRecyclerView(gridLayoutManager: GridLayoutManager, movieAdapter: PopularMoviePagedListAdapter) {
+        main_rv.layoutManager = gridLayoutManager
+        main_rv.setHasFixedSize(true)
+        main_rv.adapter = movieAdapter
     }
 
     private fun observeLiveData(movieAdapter: PopularMoviePagedListAdapter) {
