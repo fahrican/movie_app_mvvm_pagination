@@ -31,8 +31,15 @@ class MainActivity : AppCompatActivity() {
         viewModel = getViewModel()
         val movieAdapter = PopularMoviePagedListAdapter(this)
         val gridLayoutManager = GridLayoutManager(this, 3)
+        gridLayoutManager.spanSizeLookup = callbackGetSpanSizeLookup(movieAdapter)
 
-        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() { // todo: create separate method
+        setUpRecyclerView(gridLayoutManager, movieAdapter)
+
+        observeLiveData(movieAdapter)
+    }
+
+    private fun callbackGetSpanSizeLookup(movieAdapter: PopularMoviePagedListAdapter): GridLayoutManager.SpanSizeLookup {
+        return object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 val viewType = movieAdapter.getItemViewType(position)
                 // MOVIE_VIEW_TYPE will occupy 1 out of 3 span
@@ -40,10 +47,6 @@ class MainActivity : AppCompatActivity() {
                 return if (viewType == movieAdapter.MOVIE_VIEW_TYPE) 1 else 3
             }
         }
-
-        setUpRecyclerView(gridLayoutManager, movieAdapter)
-
-        observeLiveData(movieAdapter)
     }
 
     private fun setUpRecyclerView(gridLayoutManager: GridLayoutManager, movieAdapter: PopularMoviePagedListAdapter) {
