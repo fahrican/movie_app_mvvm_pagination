@@ -40,6 +40,29 @@ object TheMovieDBClient {
             .build()
             .create(ITheMovieDB::class.java)
     }
+
+    // Prepare to log HTTP request
+    private fun createOkHttpClient(requestInterceptor: Interceptor): OkHttpClient {
+        val logger = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
+        return OkHttpClient.Builder()
+            .addInterceptor(requestInterceptor)
+            .addInterceptor(generateInterceptorCallback())
+            .addInterceptor(logger)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .build()
+    }
+
+    // Here gets the HTTP request logged to Logcat
+    private fun generateInterceptorCallback(): Interceptor {
+        return object : Interceptor {
+            override fun intercept(chain: Interceptor.Chain): Response {
+                val originalRequest: Request = chain.request()
+                val request = originalRequest.newBuilder().header(API_KEY, TMDB_API_KEY).build()
+                return chain.proceed(request)
+            }
+        }
+    }
 }
 
 const val BASE_URL = "https://api.themoviedb.org/3/"
