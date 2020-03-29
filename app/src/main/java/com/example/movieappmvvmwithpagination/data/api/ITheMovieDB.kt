@@ -1,7 +1,7 @@
 package com.example.movieappmvvmwithpagination.data.api
 
-import com.example.movieappmvvmwithpagination.data.vo.MovieDetails
-import com.example.movieappmvvmwithpagination.data.vo.MovieResponse
+import com.example.movieappmvvmwithpagination.data.model.MovieDetails
+import com.example.movieappmvvmwithpagination.data.model.MovieResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,4 +1,4 @@
-package com.example.movieappmvvmwithpagination.data.vo
+package com.example.movieappmvvmwithpagination.data.model
 
 import com.squareup.moshi.Json
 

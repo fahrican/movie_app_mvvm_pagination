@@ -3,7 +3,7 @@ package com.example.movieappmvvmwithpagination.data.repository
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
-import com.example.movieappmvvmwithpagination.data.vo.Movie
+import com.example.movieappmvvmwithpagination.data.model.Movie
 import io.reactivex.disposables.CompositeDisposable
 
 

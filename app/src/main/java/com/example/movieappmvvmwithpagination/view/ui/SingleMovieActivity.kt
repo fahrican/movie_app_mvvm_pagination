@@ -14,7 +14,7 @@ import com.example.movieappmvvmwithpagination.data.api.TheMovieDBClient
 import com.example.movieappmvvmwithpagination.data.constant.POSTER_BASE_URL
 import com.example.movieappmvvmwithpagination.data.repository.MovieDetailsRepository
 import com.example.movieappmvvmwithpagination.data.repository.NetworkState
-import com.example.movieappmvvmwithpagination.data.vo.MovieDetails
+import com.example.movieappmvvmwithpagination.data.model.MovieDetails
 import com.example.movieappmvvmwithpagination.viewmodel.SingleMovieViewModel
 import kotlinx.android.synthetic.main.activity_single_movie.*
 
