@@ -32,7 +32,7 @@ class MovieDataSource(
                     },
                     {
                         networkState.postValue(NetworkState.ERROR)
-                        Log.e("MovieDataSource", it.message)
+                        Log.e("MovieDataSource", "${it.message}")
                     }
                 )
         )
