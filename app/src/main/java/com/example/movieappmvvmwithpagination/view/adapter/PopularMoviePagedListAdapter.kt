@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.movieappmvvmwithpagination.R
 import com.example.movieappmvvmwithpagination.data.constant.INTENT_ID
 import com.example.movieappmvvmwithpagination.data.constant.POSTER_BASE_URL
-import com.example.movieappmvvmwithpagination.data.repository.NetworkState
+import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.data.model.Movie
 import com.example.movieappmvvmwithpagination.view.ui.SingleMovieActivity
 import kotlinx.android.synthetic.main.item_movie.view.*

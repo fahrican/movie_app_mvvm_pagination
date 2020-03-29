@@ -3,7 +3,7 @@ package com.example.movieappmvvmwithpagination.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.movieappmvvmwithpagination.data.repository.MovieDetailsRepository
-import com.example.movieappmvvmwithpagination.data.repository.NetworkState
+import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.data.model.MovieDetails
 import io.reactivex.disposables.CompositeDisposable
 

@@ -12,7 +12,7 @@ import com.example.movieappmvvmwithpagination.R
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
 import com.example.movieappmvvmwithpagination.data.api.TheMovieDBClient
 import com.example.movieappmvvmwithpagination.data.repository.MoviePagedListRepository
-import com.example.movieappmvvmwithpagination.data.repository.NetworkState
+import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.view.adapter.PopularMoviePagedListAdapter
 import com.example.movieappmvvmwithpagination.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*

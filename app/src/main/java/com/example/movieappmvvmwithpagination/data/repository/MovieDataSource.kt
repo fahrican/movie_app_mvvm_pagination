@@ -6,6 +6,7 @@ import androidx.paging.PageKeyedDataSource
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
 import com.example.movieappmvvmwithpagination.data.constant.FIRST_PAGE
 import com.example.movieappmvvmwithpagination.data.model.Movie
+import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 

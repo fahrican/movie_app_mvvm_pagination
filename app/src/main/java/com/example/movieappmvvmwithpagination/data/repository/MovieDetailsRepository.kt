@@ -3,6 +3,7 @@ package com.example.movieappmvvmwithpagination.data.repository
 import androidx.lifecycle.LiveData
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
 import com.example.movieappmvvmwithpagination.data.model.MovieDetails
+import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import io.reactivex.disposables.CompositeDisposable
 
 class MovieDetailsRepository(private val apiService: ITheMovieDB) {

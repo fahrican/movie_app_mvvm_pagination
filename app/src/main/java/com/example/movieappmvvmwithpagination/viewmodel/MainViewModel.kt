@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import com.example.movieappmvvmwithpagination.data.repository.MoviePagedListRepository
-import com.example.movieappmvvmwithpagination.data.repository.NetworkState
+import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.data.model.Movie
 import io.reactivex.disposables.CompositeDisposable
 

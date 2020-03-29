@@ -7,6 +7,7 @@ import androidx.paging.PagedList
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
 import com.example.movieappmvvmwithpagination.data.constant.POSTS_PER_PAGE
 import com.example.movieappmvvmwithpagination.data.model.Movie
+import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import io.reactivex.disposables.CompositeDisposable
 
 class MoviePagedListRepository(private val apiService: ITheMovieDB) {
