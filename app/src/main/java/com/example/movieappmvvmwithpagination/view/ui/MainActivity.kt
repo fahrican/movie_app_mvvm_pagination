@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val apiService: ITheMovieDB = TheMovieDBClient.getClient()
         movieRepository = MoviePagedListRepository(apiService)
         viewModel = getViewModel()
-        val movieAdapter = PopularMoviePagedListAdapter(this)
+        val movieAdapter = PopularMoviePagedListAdapter()
         val gridLayoutManager = GridLayoutManager(this, 3)
         gridLayoutManager.spanSizeLookup = callbackGetSpanSizeLookup(movieAdapter)
 

@@ -18,14 +18,16 @@ import com.example.movieappmvvmwithpagination.view.ui.SingleMovieActivity
 import kotlinx.android.synthetic.main.item_movie.view.*
 import kotlinx.android.synthetic.main.item_network_state.view.*
 
-class PopularMoviePagedListAdapter(val context: Context) : // todo: get rid of context as argument
+class PopularMoviePagedListAdapter :
     PagedListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallback()) {
 
     val MOVIE_VIEW_TYPE = 1
     val NETWORK_VIEW_TYPE = 2
     private var networkSate: NetworkState? = null
+    private lateinit var viewGroupContext: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        viewGroupContext = parent.context
         val layoutInflater = LayoutInflater.from(parent.context)
         val view: View
 
@@ -40,7 +42,7 @@ class PopularMoviePagedListAdapter(val context: Context) : // todo: get rid of c
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == MOVIE_VIEW_TYPE) {
-            (holder as MovieItemViewHolder).bind(getItem(position), context)
+            (holder as MovieItemViewHolder).bind(getItem(position), viewGroupContext)
         } else {
             (holder as NetworkStateItemViewHolder).bind(networkSate)
         }
@@ -73,7 +75,8 @@ class PopularMoviePagedListAdapter(val context: Context) : // todo: get rid of c
         }
     }
 
-    class MovieItemViewHolder(view: View) : RecyclerView.ViewHolder(view) { // todo: use of data binding
+    class MovieItemViewHolder(view: View) :
+        RecyclerView.ViewHolder(view) { // todo: use of data binding
 
         fun bind(movie: Movie?, context: Context) {
             itemView.cv_movie_title.text = movie?.title
@@ -90,7 +93,8 @@ class PopularMoviePagedListAdapter(val context: Context) : // todo: get rid of c
         }
     }
 
-    class NetworkStateItemViewHolder(view: View) : RecyclerView.ViewHolder(view) { // todo: use of data binding
+    class NetworkStateItemViewHolder(view: View) :
+        RecyclerView.ViewHolder(view) { // todo: use of data binding
 
         fun bind(networkSate: NetworkState?) {
             // item progressbar
