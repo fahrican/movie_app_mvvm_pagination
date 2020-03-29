@@ -8,12 +8,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.bumptech.glide.Glide
 import com.example.movieappmvvmwithpagination.R
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
 import com.example.movieappmvvmwithpagination.data.api.TheMovieDBClient
 import com.example.movieappmvvmwithpagination.data.constant.INTENT_ID
-import com.example.movieappmvvmwithpagination.data.constant.POSTER_BASE_URL
 import com.example.movieappmvvmwithpagination.data.repository.MovieDetailsRepository
 import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.data.model.MovieDetails
@@ -71,7 +69,5 @@ class SingleMovieActivity : AppCompatActivity() {
 
     private fun bindUI(movieDetails: MovieDetails) { // todo: use data binding
         activitySingleMovieBinding.md = movieDetails
-        val moviePosterURL: String = POSTER_BASE_URL + movieDetails.posterPath
-        Glide.with(this).load(moviePosterURL).into(single_movie_poster)
     }
 }
