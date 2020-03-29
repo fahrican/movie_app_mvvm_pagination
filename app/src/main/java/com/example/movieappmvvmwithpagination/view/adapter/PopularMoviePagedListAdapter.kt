@@ -9,15 +9,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.movieappmvvmwithpagination.R
 import com.example.movieappmvvmwithpagination.data.constant.INTENT_ID
-import com.example.movieappmvvmwithpagination.data.constant.POSTER_BASE_URL
 import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.data.model.Movie
+import com.example.movieappmvvmwithpagination.databinding.ItemMovieBinding
 import com.example.movieappmvvmwithpagination.databinding.ItemNetworkStateBinding
 import com.example.movieappmvvmwithpagination.view.ui.SingleMovieActivity
-import kotlinx.android.synthetic.main.item_movie.view.*
 
 class PopularMoviePagedListAdapter :
     PagedListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallback()) {
@@ -33,8 +31,13 @@ class PopularMoviePagedListAdapter :
         val view: View
 
         return if (viewType == MOVIE_VIEW_TYPE) {
-            view = layoutInflater.inflate(R.layout.item_movie, parent, false)
-            MovieItemViewHolder(view)
+            val itemMovieBinding: ItemMovieBinding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.item_movie,
+                parent,
+                false
+            )
+            MovieItemViewHolder(itemMovieBinding)
         } else {
             val itemNetworkStateBinding: ItemNetworkStateBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
@@ -81,17 +84,12 @@ class PopularMoviePagedListAdapter :
         }
     }
 
-    class MovieItemViewHolder(view: View) :
-        RecyclerView.ViewHolder(view) { // todo: use of data binding
+    class MovieItemViewHolder(private val itemMovieBinding: ItemMovieBinding) :
+        RecyclerView.ViewHolder(itemMovieBinding.root) { // todo: use of data binding
 
         fun bind(movie: Movie?, context: Context) {
-            itemView.cv_movie_title.text = movie?.title
-            itemView.cv_movie_release_date.text = movie?.releaseDate
-
-            val moviePosterURL = POSTER_BASE_URL + movie?.posterPath
-            Glide.with(itemView.context).load(moviePosterURL).into(itemView.cv_movie_poster)
-
-            itemView.setOnClickListener {
+            itemMovieBinding.movie = movie
+            itemMovieBinding.cv.setOnClickListener {
                 val intent = Intent(context, SingleMovieActivity::class.java)
                 intent.putExtra(INTENT_ID, movie?.id)
                 context.startActivity(intent)
