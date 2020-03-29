@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movieappmvvmwithpagination.R
-import com.example.movieappmvvmwithpagination.data.api.POSTER_BASE_URL
+import com.example.movieappmvvmwithpagination.data.constant.POSTER_BASE_URL
 import com.example.movieappmvvmwithpagination.data.repository.NetworkState
 import com.example.movieappmvvmwithpagination.data.vo.Movie
 import com.example.movieappmvvmwithpagination.view.ui.SingleMovieActivity

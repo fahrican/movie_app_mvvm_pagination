@@ -1,5 +1,7 @@
 package com.example.movieappmvvmwithpagination.data.api
 
+import com.example.movieappmvvmwithpagination.data.constant.API_KEY
+import com.example.movieappmvvmwithpagination.data.constant.BASE_URL
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -62,9 +64,3 @@ object TheMovieDBClient {
         }
     }
 }
-
-const val BASE_URL = "https://api.themoviedb.org/3/"
-const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
-const val FIRST_PAGE = 1
-const val POSTS_PER_PAGE = 20
-const val API_KEY = "api_key"

@@ -5,7 +5,7 @@ import androidx.lifecycle.Transformations
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
-import com.example.movieappmvvmwithpagination.data.api.POSTS_PER_PAGE
+import com.example.movieappmvvmwithpagination.data.constant.POSTS_PER_PAGE
 import com.example.movieappmvvmwithpagination.data.vo.Movie
 import io.reactivex.disposables.CompositeDisposable
 
