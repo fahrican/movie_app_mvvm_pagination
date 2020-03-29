@@ -8,33 +8,10 @@ enum class Status {
 
 class NetworkState(val status: Status, val msg: String) {
 
-    companion object { // todo: use joined assignment
-        val LOADED: NetworkState
-        val LOADING: NetworkState
-        val ERROR: NetworkState
-        val END_OF_LIST: NetworkState
-
-        init {
-            LOADED =
-                NetworkState(
-                    Status.SUCCESS,
-                    "success"
-                )
-            LOADING =
-                NetworkState(
-                    Status.RUNNING,
-                    "running"
-                )
-            ERROR =
-                NetworkState(
-                    Status.FAILED,
-                    "Something went wrong!"
-                )
-            END_OF_LIST =
-                NetworkState(
-                    Status.FAILED,
-                    "You have reached the end."
-                )
-        }
+    companion object {
+        val LOADED: NetworkState = NetworkState(Status.SUCCESS, "success")
+        val LOADING: NetworkState = NetworkState(Status.RUNNING, "running")
+        val ERROR: NetworkState = NetworkState(Status.FAILED, "Something went wrong!")
+        val END_OF_LIST: NetworkState = NetworkState(Status.FAILED, "You have reached the end.")
     }
 }
