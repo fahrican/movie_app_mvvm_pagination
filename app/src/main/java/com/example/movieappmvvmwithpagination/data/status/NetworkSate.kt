@@ -9,7 +9,7 @@ enum class Status {
 class NetworkState(val status: Status, val msg: String) {
 
     companion object {
-        val LOADED = NetworkState(Status.SUCCESS, "success")
+        val LOADED = NetworkState(Status.SUCCESS, "success") //todo: make constants
         val LOADING = NetworkState(Status.RUNNING, "running")
         val ERROR = NetworkState(Status.FAILED, "Something went wrong!")
         val END_OF_LIST = NetworkState(Status.FAILED, "You have reached the end.")
