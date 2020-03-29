@@ -103,7 +103,7 @@ class PopularMoviePagedListAdapter(val context: Context) : // todo: get rid of c
             if (networkSate != null && networkSate == NetworkState.ERROR) {
                 itemView.item_error_text.text = networkSate.msg
                 itemView.item_error_text.visibility = View.VISIBLE
-            } else if (networkSate != null && networkSate == NetworkState.END_OF_LIST) { // todo: could be one check
+            } else if (networkSate != null && networkSate == NetworkState.END_OF_LIST) { // todo: check why "You have reached the end" is not shown
                 itemView.item_error_text.text = networkSate.msg
                 itemView.item_error_text.visibility = View.VISIBLE
             } else {
