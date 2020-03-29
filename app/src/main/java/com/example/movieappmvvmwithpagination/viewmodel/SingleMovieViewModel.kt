@@ -18,7 +18,7 @@ class SingleMovieViewModel(
         movieRepository.fetchSingleMovieDetails(compositeDisposable, movieId)
     }
 
-    val networkSate: LiveData<NetworkState> by lazy {
+    val networkSate: LiveData<NetworkState> by lazy { // todo: rename property
         movieRepository.getMovieDetailsNetworkState()
     }
 
