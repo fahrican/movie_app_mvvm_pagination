@@ -4,6 +4,8 @@ import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -13,7 +15,6 @@ object TheMovieDBClient {
 
     fun getClient(): ITheMovieDB {
         val requestInterceptor = Interceptor { chain ->
-            // Interceptor takes only one argument which is a lambda function so parenthesis can be omitted
             val url: HttpUrl = chain.request()
                 .url
                 .newBuilder()
@@ -25,12 +26,9 @@ object TheMovieDBClient {
                 .url(url)
                 .build()
 
-            return@Interceptor chain.proceed(request)   // explicitly return a value from whit @ annotation. lambda always returns the value of the last expression implicitly
+            return@Interceptor chain.proceed(request)
         }
-        val okHttpClient: OkHttpClient = OkHttpClient.Builder() // todo: log network request in the Logcat
-            .addInterceptor(requestInterceptor)
-            .connectTimeout(60, TimeUnit.SECONDS)
-            .build()
+        val okHttpClient = createOkHttpClient(requestInterceptor)
 
         return Retrofit.Builder()
             .client(okHttpClient)
