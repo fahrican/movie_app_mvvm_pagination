@@ -42,7 +42,6 @@ object TheMovieDBClient {
     }
 }
 
-const val API_KEY = "ea98aed9deb11f46c3d6d521ee63a0ae"
 const val BASE_URL = "https://api.themoviedb.org/3/"
 const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
 const val FIRST_PAGE = 1
