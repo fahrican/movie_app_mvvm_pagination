@@ -30,18 +30,29 @@ class SingleMovieActivity : AppCompatActivity() {
         val movieId: Int = intent.getIntExtra("id", 1)
         val apiService: ITheMovieDB = TheMovieDBClient.getClient()
         movieDetailsRepository = MovieDetailsRepository(apiService)
-
         singleMovieViewModel = getViewModel(movieId)
-        singleMovieViewModel.movieDetails.observe(this, Observer {// todo: create separate method
-            bindUI(it)
-        })
 
-        singleMovieViewModel.networkSate.observe(this, Observer {// todo: create separate method
+        observeLiveData()
+    }
+
+    private fun observeLiveData() {
+        observeMovieDetails()
+        observeNetworkState()
+    }
+
+    private fun observeNetworkState() {
+        singleMovieViewModel.networkSate.observe(this, Observer {
             single_movie_progressbar.visibility =
                 if (it == NetworkState.LOADING) View.VISIBLE else View.GONE
 
             single_movie_error_text.visibility =
                 if (it == NetworkState.ERROR) View.VISIBLE else View.GONE
+        })
+    }
+
+    private fun observeMovieDetails() {
+        singleMovieViewModel.movieDetails.observe(this, Observer {
+            bindUI(it)
         })
     }
 
