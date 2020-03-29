@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.movieappmvvmwithpagination.R
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
 import com.example.movieappmvvmwithpagination.data.api.TheMovieDBClient
+import com.example.movieappmvvmwithpagination.data.constant.INTENT_ID
 import com.example.movieappmvvmwithpagination.data.constant.POSTER_BASE_URL
 import com.example.movieappmvvmwithpagination.data.repository.MovieDetailsRepository
 import com.example.movieappmvvmwithpagination.data.repository.NetworkState
@@ -27,7 +28,7 @@ class SingleMovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_movie)
 
-        val movieId: Int = intent.getIntExtra("id", 1)
+        val movieId: Int = intent.getIntExtra(INTENT_ID, 1)
         val apiService: ITheMovieDB = TheMovieDBClient.getClient()
         movieDetailsRepository = MovieDetailsRepository(apiService)
         singleMovieViewModel = getViewModel(movieId)

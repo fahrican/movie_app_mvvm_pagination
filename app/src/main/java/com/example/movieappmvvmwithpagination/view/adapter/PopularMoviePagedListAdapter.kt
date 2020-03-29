@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movieappmvvmwithpagination.R
+import com.example.movieappmvvmwithpagination.data.constant.INTENT_ID
 import com.example.movieappmvvmwithpagination.data.constant.POSTER_BASE_URL
 import com.example.movieappmvvmwithpagination.data.repository.NetworkState
 import com.example.movieappmvvmwithpagination.data.model.Movie
@@ -83,7 +84,7 @@ class PopularMoviePagedListAdapter(val context: Context) : // todo: get rid of c
 
             itemView.setOnClickListener {
                 val intent = Intent(context, SingleMovieActivity::class.java)
-                intent.putExtra("id", movie?.id)
+                intent.putExtra(INTENT_ID, movie?.id)
                 context.startActivity(intent)
             }
         }
