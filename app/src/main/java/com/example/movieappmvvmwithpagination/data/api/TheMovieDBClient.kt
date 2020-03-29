@@ -17,7 +17,7 @@ object TheMovieDBClient {
             val url: HttpUrl = chain.request()
                 .url
                 .newBuilder()
-                .addQueryParameter("api_key", API_KEY)
+                .addQueryParameter("api_key", API_KEY) // todo: use constant instead of hardcoded string
                 .build()
 
             val request: Request = chain.request()
@@ -27,7 +27,7 @@ object TheMovieDBClient {
 
             return@Interceptor chain.proceed(request)   // explicitly return a value from whit @ annotation. lambda always returns the value of the last expression implicitly
         }
-        val okHttpClient: OkHttpClient = OkHttpClient.Builder()
+        val okHttpClient: OkHttpClient = OkHttpClient.Builder() // todo: log network request in the Logcat
             .addInterceptor(requestInterceptor)
             .connectTimeout(60, TimeUnit.SECONDS)
             .build()
