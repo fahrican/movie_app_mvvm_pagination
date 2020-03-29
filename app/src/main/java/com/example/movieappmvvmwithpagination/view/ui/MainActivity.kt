@@ -45,11 +45,16 @@ class MainActivity : AppCompatActivity() {
         main_rv.setHasFixedSize(true)
         main_rv.adapter = movieAdapter
 
-        viewModel.moviePagedList.observe(this, Observer { // todo: create separate method
-            movieAdapter.submitList(it)
-        })
+        observeLiveData(movieAdapter)
+    }
 
-        viewModel.networkSate.observe(this, Observer { // todo: create separate method
+    private fun observeLiveData(movieAdapter: PopularMoviePagedListAdapter) {
+        observeMoviePagedList(movieAdapter)
+        observeNetworkState(movieAdapter)
+    }
+
+    private fun observeNetworkState(movieAdapter: PopularMoviePagedListAdapter) {
+        viewModel.networkSate.observe(this, Observer {
             main_progressbar.visibility =
                 if (viewModel.checkIsListEmpty() && it == NetworkState.LOADING) View.VISIBLE else View.GONE
 
@@ -59,6 +64,12 @@ class MainActivity : AppCompatActivity() {
             if (!viewModel.checkIsListEmpty()) {
                 movieAdapter.setNetworkState(it)
             }
+        })
+    }
+
+    private fun observeMoviePagedList(movieAdapter: PopularMoviePagedListAdapter) {
+        viewModel.moviePagedList.observe(this, Observer {
+            movieAdapter.submitList(it)
         })
     }
 
