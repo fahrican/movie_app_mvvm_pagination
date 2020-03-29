@@ -3,6 +3,7 @@ package com.example.movieappmvvmwithpagination.view.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +17,7 @@ import com.example.movieappmvvmwithpagination.data.constant.POSTER_BASE_URL
 import com.example.movieappmvvmwithpagination.data.repository.MovieDetailsRepository
 import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.data.model.MovieDetails
+import com.example.movieappmvvmwithpagination.databinding.ActivitySingleMovieBinding
 import com.example.movieappmvvmwithpagination.viewmodel.SingleMovieViewModel
 import kotlinx.android.synthetic.main.activity_single_movie.*
 
@@ -23,10 +25,11 @@ class SingleMovieActivity : AppCompatActivity() {
 
     private lateinit var singleMovieViewModel: SingleMovieViewModel
     private lateinit var movieDetailsRepository: MovieDetailsRepository
+    private lateinit var activitySingleMovieBinding: ActivitySingleMovieBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_single_movie)
+        activitySingleMovieBinding = DataBindingUtil.setContentView(this, R.layout.activity_single_movie)
 
         val movieId: Int = intent.getIntExtra(INTENT_ID, 1)
         val apiService: ITheMovieDB = TheMovieDBClient.getClient()
@@ -67,11 +70,7 @@ class SingleMovieActivity : AppCompatActivity() {
     }
 
     private fun bindUI(movieDetails: MovieDetails) { // todo: use data binding
-        single_movie_title.text = movieDetails.title
-        single_movie_sub_title.text = movieDetails.tagline
-        single_movie_info.text = movieDetails.overview
-        single_movie_release_date.text = movieDetails.releaseDate
-
+        activitySingleMovieBinding.md = movieDetails
         val moviePosterURL: String = POSTER_BASE_URL + movieDetails.posterPath
         Glide.with(this).load(moviePosterURL).into(single_movie_poster)
     }
