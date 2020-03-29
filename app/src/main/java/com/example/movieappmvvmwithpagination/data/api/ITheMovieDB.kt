@@ -17,4 +17,5 @@ interface ITheMovieDB {
     fun getPopularMovie(@Query("page") page: Int): Single<MovieResponse>
 
     @GET("movie/{movie_id}")
-    fun getMovieDetails(@Path("movie_id") id: Int): Single<MovieDetails>}
+    fun getMovieDetails(@Path("movie_id") id: Int): Single<MovieDetails>
+}
