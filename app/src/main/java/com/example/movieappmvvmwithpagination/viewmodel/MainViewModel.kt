@@ -16,7 +16,7 @@ class MainViewModel(private val movieRepository: MoviePagedListRepository) : Vie
         movieRepository.fetchLiveMoviePagedList(compositeDisposable)
     }
 
-    val networkSate: LiveData<NetworkState> by lazy { // todo: rename property
+    val networkState: LiveData<NetworkState> by lazy {
         movieRepository.getNetworkState()
     }
 

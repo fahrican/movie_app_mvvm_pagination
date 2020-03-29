@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeNetworkState(movieAdapter: PopularMoviePagedListAdapter) {
-        viewModel.networkSate.observe(this, Observer {
+        viewModel.networkState.observe(this, Observer {
             main_progressbar.visibility =
                 if (viewModel.checkIsListEmpty() && it == NetworkState.LOADING) View.VISIBLE else View.GONE
 
