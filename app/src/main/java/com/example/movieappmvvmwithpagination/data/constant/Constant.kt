@@ -7,3 +7,9 @@ const val FIRST_PAGE = 1
 const val POSTS_PER_PAGE = 20
 const val API_KEY = "api_key"
 const val INTENT_ID = "id"
+
+// NetworkState messages
+const val SUCCESS_TEXT = "success"
+const val RUNNING_TEXT = "running"
+const val ERROR_TEXT = "Something went wrong!"
+const val REACHED_END_TEXT = "You have reached the end."
