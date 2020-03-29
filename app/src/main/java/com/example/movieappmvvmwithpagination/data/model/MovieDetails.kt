@@ -1,5 +1,9 @@
 package com.example.movieappmvvmwithpagination.data.model
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.example.movieappmvvmwithpagination.data.constant.POSTER_BASE_URL
 import com.squareup.moshi.Json
 
 data class MovieDetails(
@@ -20,3 +24,9 @@ data class MovieDetails(
     @field:Json(name = "vote_average")
     val rating: Double
 )
+
+@BindingAdapter("imageUrl")
+fun setImageUrl(imageView: ImageView, uri: String?) {
+    val moviePosterURL: String = POSTER_BASE_URL + uri
+    Glide.with(imageView.context).load(moviePosterURL).into(imageView)
+}
