@@ -5,9 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.example.movieappmvvmwithpagination.R
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
 import com.example.movieappmvvmwithpagination.data.api.TheMovieDBClient
@@ -16,12 +13,21 @@ import com.example.movieappmvvmwithpagination.data.repository.MovieDetailsReposi
 import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.databinding.ActivitySingleMovieBinding
 import com.example.movieappmvvmwithpagination.viewmodel.SingleMovieViewModel
+import com.example.movieappmvvmwithpagination.viewmodel.SingleMovieViewModelFactory
 
 class SingleMovieActivity : AppCompatActivity() {
 
     private lateinit var singleMovieViewModel: SingleMovieViewModel
     private lateinit var movieDetailsRepository: MovieDetailsRepository
     private lateinit var activitySingleMovieBinding: ActivitySingleMovieBinding
+    private val movieDetailsRepository = MovieDetailsRepository(apiService)
+    private val singleMovieViewModel: SingleMovieViewModel by viewModels {
+        SingleMovieViewModelFactory(
+            movieDetailsRepository,
+            1
+        )
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,14 +61,5 @@ class SingleMovieActivity : AppCompatActivity() {
         singleMovieViewModel.movieDetails.observe(this, Observer {
             activitySingleMovieBinding.md = it
         })
-    }
-
-    private fun getViewModel(movieId: Int): SingleMovieViewModel { // todo: use viewModel()
-        return ViewModelProviders.of(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return SingleMovieViewModel(movieDetailsRepository, movieId) as T
-            }
-        })[SingleMovieViewModel::class.java]
     }
 }
