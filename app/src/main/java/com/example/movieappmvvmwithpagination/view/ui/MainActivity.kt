@@ -4,9 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieappmvvmwithpagination.R
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
@@ -78,14 +75,5 @@ class MainActivity : AppCompatActivity() {
         viewModel.moviePagedList.observe(this, Observer {
             movieAdapter.submitList(it)
         })
-    }
-
-    private fun getViewModel(): MainViewModel {
-        return ViewModelProviders.of(this, object : ViewModelProvider.Factory { // todo: use viewModel()
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return MainViewModel(movieRepository) as T
-            }
-        })[MainViewModel::class.java]
     }
 }
