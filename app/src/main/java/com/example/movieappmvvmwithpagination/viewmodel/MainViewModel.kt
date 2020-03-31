@@ -9,7 +9,7 @@ import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.data.model.Movie
 import io.reactivex.disposables.CompositeDisposable
 
-class MainViewModel(private val movieRepository: MoviePagedListRepository) : ViewModel() {
+class MainViewModel(private val movieRepository: MoviePagedListRepository) : ViewModel() { //todo: rename property
 
     private val compositeDisposable = CompositeDisposable()
 
