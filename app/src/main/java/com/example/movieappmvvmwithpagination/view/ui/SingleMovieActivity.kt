@@ -3,6 +3,7 @@ package com.example.movieappmvvmwithpagination.view.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.movieappmvvmwithpagination.R
@@ -17,8 +18,7 @@ import com.example.movieappmvvmwithpagination.viewmodel.SingleMovieViewModelFact
 
 class SingleMovieActivity : AppCompatActivity() {
 
-    private lateinit var singleMovieViewModel: SingleMovieViewModel
-    private lateinit var movieDetailsRepository: MovieDetailsRepository
+    private val apiService: ITheMovieDB = TheMovieDBClient.getClient()
     private lateinit var activitySingleMovieBinding: ActivitySingleMovieBinding
     private val movieDetailsRepository = MovieDetailsRepository(apiService)
     private val singleMovieViewModel: SingleMovieViewModel by viewModels {
@@ -35,9 +35,7 @@ class SingleMovieActivity : AppCompatActivity() {
             DataBindingUtil.setContentView(this, R.layout.activity_single_movie)
 
         val movieId: Int = intent.getIntExtra(INTENT_ID, 1)
-        val apiService: ITheMovieDB = TheMovieDBClient.getClient()
-        movieDetailsRepository = MovieDetailsRepository(apiService)
-        singleMovieViewModel = getViewModel(movieId)
+        singleMovieViewModel.movieId = movieId
 
         observeLiveData()
     }
