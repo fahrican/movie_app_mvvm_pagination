@@ -3,6 +3,7 @@ package com.example.movieappmvvmwithpagination.view.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieappmvvmwithpagination.R
@@ -12,12 +13,14 @@ import com.example.movieappmvvmwithpagination.data.repository.MoviePagedListRepo
 import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.view.adapter.PopularMoviePagedListAdapter
 import com.example.movieappmvvmwithpagination.viewmodel.MainViewModel
+import com.example.movieappmvvmwithpagination.viewmodel.MainViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainViewModel
-    lateinit var movieRepository: MoviePagedListRepository
+    private val apiService: ITheMovieDB = TheMovieDBClient.getClient()
+    private val movieRepository = MoviePagedListRepository(apiService) //todo: rename property
+    private val viewModel: MainViewModel by viewModels { MainViewModelFactory(movieRepository) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
