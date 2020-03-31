@@ -2,6 +2,7 @@ package com.example.movieappmvvmwithpagination.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.movieappmvvmwithpagination.data.repository.MovieDetailsRepository
 import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.data.model.MovieDetails
@@ -9,7 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 class SingleMovieViewModel(
     private val movieRepository: MovieDetailsRepository,
-    movieId: Int
+    var movieId: Int
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
