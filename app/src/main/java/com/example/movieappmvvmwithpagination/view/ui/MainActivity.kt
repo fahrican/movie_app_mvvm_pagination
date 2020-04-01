@@ -8,23 +8,32 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieappmvvmwithpagination.R
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
-import com.example.movieappmvvmwithpagination.data.api.TheMovieDBClient
 import com.example.movieappmvvmwithpagination.data.repository.MoviePagedListRepository
 import com.example.movieappmvvmwithpagination.data.status.NetworkState
+import com.example.movieappmvvmwithpagination.di.DaggerApiComponent
 import com.example.movieappmvvmwithpagination.view.adapter.PopularMoviePagedListAdapter
 import com.example.movieappmvvmwithpagination.viewmodel.MainViewModel
 import com.example.movieappmvvmwithpagination.viewmodel.MainViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val apiService: ITheMovieDB = TheMovieDBClient.getClient() // todo: use of Dagger 2
-    private val moviePagedListRepository = MoviePagedListRepository(apiService)
-    private val mainVM: MainViewModel by viewModels { MainViewModelFactory(moviePagedListRepository) }
+    @Inject
+    lateinit var apiService: ITheMovieDB
+
+    @Inject
+    lateinit var moviePagedListRepository: MoviePagedListRepository
+
+    @Inject
+    lateinit var mainVMFactory: MainViewModelFactory
+    private val mainVM: MainViewModel by viewModels { mainVMFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        DaggerApiComponent.create().inject(this)
 
         val movieAdapter = PopularMoviePagedListAdapter()
         val gridLayoutManager = GridLayoutManager(this, 3)
