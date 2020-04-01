@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val apiService: ITheMovieDB = TheMovieDBClient.getClient()
+    private val apiService: ITheMovieDB = TheMovieDBClient.getClient() // todo: use of Dagger 2
     private val moviePagedListRepository = MoviePagedListRepository(apiService)
     private val mainVM: MainViewModel by viewModels { MainViewModelFactory(moviePagedListRepository) }
 

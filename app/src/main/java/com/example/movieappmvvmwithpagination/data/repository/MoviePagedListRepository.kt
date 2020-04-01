@@ -13,7 +13,7 @@ import io.reactivex.disposables.CompositeDisposable
 class MoviePagedListRepository(private val apiService: ITheMovieDB) {
 
     lateinit var moviePagedList: LiveData<PagedList<Movie>>
-    lateinit var movieDataSourceFactory: MovieDataSourceFactory
+    lateinit var movieDataSourceFactory: MovieDataSourceFactory // todo: make fields private
 
     fun fetchLiveMoviePagedList(compositeDisposable: CompositeDisposable): LiveData<PagedList<Movie>> {
         movieDataSourceFactory = MovieDataSourceFactory(apiService, compositeDisposable)

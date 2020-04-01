@@ -18,7 +18,7 @@ import com.example.movieappmvvmwithpagination.viewmodel.SingleMovieViewModelFact
 
 class SingleMovieActivity : AppCompatActivity() {
 
-    private val apiService: ITheMovieDB = TheMovieDBClient.getClient()
+    private val apiService: ITheMovieDB = TheMovieDBClient.getClient() // todo: use of Dagger 2
     private lateinit var activitySingleMovieBinding: ActivitySingleMovieBinding
     private val movieDetailsRepository = MovieDetailsRepository(apiService)
     private val singleMovieVM: SingleMovieViewModel by viewModels {
