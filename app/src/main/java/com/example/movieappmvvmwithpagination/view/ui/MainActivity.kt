@@ -19,8 +19,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private val apiService: ITheMovieDB = TheMovieDBClient.getClient()
-    private val movieRepository = MoviePagedListRepository(apiService) //todo: rename property
-    private val viewModel: MainViewModel by viewModels { MainViewModelFactory(movieRepository) }
+    private val moviePagedListRepository = MoviePagedListRepository(apiService)
+    private val mainVM: MainViewModel by viewModels { MainViewModelFactory(moviePagedListRepository) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,21 +58,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeNetworkState(movieAdapter: PopularMoviePagedListAdapter) {
-        viewModel.networkState.observe(this, Observer {
+        mainVM.networkState.observe(this, Observer {
             main_progressbar.visibility =
-                if (viewModel.checkIsListEmpty() && it == NetworkState.LOADING) View.VISIBLE else View.GONE
+                if (mainVM.checkIsListEmpty() && it == NetworkState.LOADING) View.VISIBLE else View.GONE
 
             main_movie_error_text.visibility =
-                if (viewModel.checkIsListEmpty() && it == NetworkState.ERROR) View.VISIBLE else View.GONE
+                if (mainVM.checkIsListEmpty() && it == NetworkState.ERROR) View.VISIBLE else View.GONE
 
-            if (!viewModel.checkIsListEmpty()) {
+            if (!mainVM.checkIsListEmpty()) {
                 movieAdapter.setNetworkState(it)
             }
         })
     }
 
     private fun observeMoviePagedList(movieAdapter: PopularMoviePagedListAdapter) {
-        viewModel.moviePagedListRepoLD.observe(this, Observer {
+        mainVM.moviePagedListRepoLD.observe(this, Observer {
             movieAdapter.submitList(it)
         })
     }

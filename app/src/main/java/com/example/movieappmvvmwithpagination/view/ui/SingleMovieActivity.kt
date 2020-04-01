@@ -21,7 +21,7 @@ class SingleMovieActivity : AppCompatActivity() {
     private val apiService: ITheMovieDB = TheMovieDBClient.getClient()
     private lateinit var activitySingleMovieBinding: ActivitySingleMovieBinding
     private val movieDetailsRepository = MovieDetailsRepository(apiService)
-    private val singleMovieViewModel: SingleMovieViewModel by viewModels {
+    private val singleMovieVM: SingleMovieViewModel by viewModels {
         SingleMovieViewModelFactory(
             movieDetailsRepository,
             1
@@ -35,7 +35,7 @@ class SingleMovieActivity : AppCompatActivity() {
             DataBindingUtil.setContentView(this, R.layout.activity_single_movie)
 
         val movieId: Int = intent.getIntExtra(INTENT_ID, 1)
-        singleMovieViewModel.movieId = movieId
+        singleMovieVM.movieId = movieId
 
         observeLiveData()
     }
@@ -46,7 +46,7 @@ class SingleMovieActivity : AppCompatActivity() {
     }
 
     private fun observeNetworkState() {
-        singleMovieViewModel.networkState.observe(this, Observer {
+        singleMovieVM.networkState.observe(this, Observer {
             activitySingleMovieBinding.singleMovieProgressbar.visibility =
                 if (it == NetworkState.LOADING) View.VISIBLE else View.GONE
 
@@ -56,7 +56,7 @@ class SingleMovieActivity : AppCompatActivity() {
     }
 
     private fun observeMovieDetails() {
-        singleMovieViewModel.movieDetailsLD.observe(this, Observer {
+        singleMovieVM.movieDetailsLD.observe(this, Observer {
             activitySingleMovieBinding.md = it
         })
     }
