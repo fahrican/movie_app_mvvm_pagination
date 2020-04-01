@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeMoviePagedList(movieAdapter: PopularMoviePagedListAdapter) {
-        viewModel.moviePagedList.observe(this, Observer {
+        viewModel.moviePagedListRepoLD.observe(this, Observer {
             movieAdapter.submitList(it)
         })
     }

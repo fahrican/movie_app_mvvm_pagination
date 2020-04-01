@@ -9,20 +9,20 @@ import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.data.model.Movie
 import io.reactivex.disposables.CompositeDisposable
 
-class MainViewModel(private val movieRepository: MoviePagedListRepository) : ViewModel() { //todo: rename property
+class MainViewModel(private val moviePagedListRepository: MoviePagedListRepository) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
-    val moviePagedList: LiveData<PagedList<Movie>> by lazy {
-        movieRepository.fetchLiveMoviePagedList(compositeDisposable)
+    val moviePagedListRepoLD: LiveData<PagedList<Movie>> by lazy {
+        moviePagedListRepository.fetchLiveMoviePagedList(compositeDisposable)
     }
 
     val networkState: LiveData<NetworkState> by lazy {
-        movieRepository.getNetworkState()
+        moviePagedListRepository.getNetworkState()
     }
 
     fun checkIsListEmpty(): Boolean {
-        return moviePagedList.value?.isEmpty() ?: true
+        return moviePagedListRepoLD.value?.isEmpty() ?: true
     }
 
     override fun onCleared() {
