@@ -39,6 +39,7 @@ dependencies {
     def lifecycle_version = '2.2.0'
     def retrofitVersion = '2.7.2'
     def firstStableVersion = '1.0.0'
+    def daggerVersion = '2.26'
 
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -78,4 +79,10 @@ dependencies {
 
     // Annotation processor
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    // Dagger 2
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 }
