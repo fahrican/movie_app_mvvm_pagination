@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.movieappmvvmwithpagination.R
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
-import com.example.movieappmvvmwithpagination.data.api.TheMovieDBClient
 import com.example.movieappmvvmwithpagination.data.constant.INTENT_ID
 import com.example.movieappmvvmwithpagination.data.repository.MovieDetailsRepository
 import com.example.movieappmvvmwithpagination.data.status.NetworkState
@@ -20,15 +19,17 @@ import javax.inject.Inject
 
 class SingleMovieActivity : AppCompatActivity() {
 
-    private lateinit var activitySingleMovieBinding: ActivitySingleMovieBinding
-
     @Inject
     lateinit var apiService: ITheMovieDB
+
     @Inject
     lateinit var movieDetailsRepository: MovieDetailsRepository
+
     @Inject
     lateinit var singleMovieVMFactory: SingleMovieViewModelFactory
-    private val singleMovieVM: SingleMovieViewModel by viewModels{ singleMovieVMFactory }
+    private val singleMovieVM: SingleMovieViewModel by viewModels { singleMovieVMFactory }
+
+    private lateinit var activitySingleMovieBinding: ActivitySingleMovieBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
