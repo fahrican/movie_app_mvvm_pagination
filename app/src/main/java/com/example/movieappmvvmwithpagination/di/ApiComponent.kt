@@ -1,5 +1,6 @@
 package com.example.movieappmvvmwithpagination.di
 
+import com.example.movieappmvvmwithpagination.view.ui.MainActivity
 import com.example.movieappmvvmwithpagination.view.ui.SingleMovieActivity
 import dagger.Component
 import javax.inject.Singleton
@@ -9,4 +10,6 @@ import javax.inject.Singleton
 interface ApiComponent {
 
     fun inject(singleMovieActivity: SingleMovieActivity)
+
+    fun inject(mainActivity: MainActivity)
 }
