@@ -13,26 +13,30 @@ import com.example.movieappmvvmwithpagination.data.constant.INTENT_ID
 import com.example.movieappmvvmwithpagination.data.repository.MovieDetailsRepository
 import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.databinding.ActivitySingleMovieBinding
+import com.example.movieappmvvmwithpagination.di.DaggerApiComponent
 import com.example.movieappmvvmwithpagination.viewmodel.SingleMovieViewModel
 import com.example.movieappmvvmwithpagination.viewmodel.SingleMovieViewModelFactory
+import javax.inject.Inject
 
 class SingleMovieActivity : AppCompatActivity() {
 
-    private val apiService: ITheMovieDB = TheMovieDBClient.getClient() // todo: use of Dagger 2
     private lateinit var activitySingleMovieBinding: ActivitySingleMovieBinding
-    private val movieDetailsRepository = MovieDetailsRepository(apiService)
-    private val singleMovieVM: SingleMovieViewModel by viewModels {
-        SingleMovieViewModelFactory(
-            movieDetailsRepository,
-            1
-        )
-    }
+
+    @Inject
+    lateinit var apiService: ITheMovieDB
+    @Inject
+    lateinit var movieDetailsRepository: MovieDetailsRepository
+    @Inject
+    lateinit var singleMovieVMFactory: SingleMovieViewModelFactory
+    private val singleMovieVM: SingleMovieViewModel by viewModels{ singleMovieVMFactory }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activitySingleMovieBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_single_movie)
+
+        DaggerApiComponent.create().inject(this)
 
         val movieId: Int = intent.getIntExtra(INTENT_ID, 1)
         singleMovieVM.movieId = movieId
