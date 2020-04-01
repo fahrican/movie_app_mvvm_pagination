@@ -30,11 +30,11 @@ class SingleMovieViewModel(
 }
 
 class SingleMovieViewModelFactory(
-    private val movieRepository: MovieDetailsRepository,
+    private val movieDetailsRepository: MovieDetailsRepository,
     private var movieId: Int
 ) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         @Suppress("UNCHECKED_CAST")
-        return SingleMovieViewModel(movieRepository, movieId) as T
+        return SingleMovieViewModel(movieDetailsRepository, movieId) as T
     }
 }

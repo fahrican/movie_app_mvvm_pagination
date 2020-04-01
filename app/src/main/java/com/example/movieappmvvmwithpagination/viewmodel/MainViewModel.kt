@@ -32,10 +32,10 @@ class MainViewModel(private val moviePagedListRepository: MoviePagedListReposito
 }
 
 class MainViewModelFactory(
-    private val movieRepository: MoviePagedListRepository
+    private val moviePagedListRepository: MoviePagedListRepository
 ) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         @Suppress("UNCHECKED_CAST")
-        return MainViewModel(movieRepository) as T
+        return MainViewModel(moviePagedListRepository) as T
     }
 }
