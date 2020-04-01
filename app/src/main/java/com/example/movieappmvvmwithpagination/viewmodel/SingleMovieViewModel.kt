@@ -9,18 +9,18 @@ import com.example.movieappmvvmwithpagination.data.model.MovieDetails
 import io.reactivex.disposables.CompositeDisposable
 
 class SingleMovieViewModel(
-    private val movieRepository: MovieDetailsRepository,
+    private val movieDetailsRepository: MovieDetailsRepository,
     var movieId: Int
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
-    val movieDetails: LiveData<MovieDetails> by lazy {
-        movieRepository.fetchSingleMovieDetails(compositeDisposable, movieId)
+    val movieDetailsLD: LiveData<MovieDetails> by lazy {
+        movieDetailsRepository.fetchSingleMovieDetails(compositeDisposable, movieId)
     }
 
     val networkState: LiveData<NetworkState> by lazy {
-        movieRepository.getMovieDetailsNetworkState()
+        movieDetailsRepository.getMovieDetailsNetworkState()
     }
 
     override fun onCleared() {

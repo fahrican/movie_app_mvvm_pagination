@@ -56,7 +56,7 @@ class SingleMovieActivity : AppCompatActivity() {
     }
 
     private fun observeMovieDetails() {
-        singleMovieViewModel.movieDetails.observe(this, Observer {
+        singleMovieViewModel.movieDetailsLD.observe(this, Observer {
             activitySingleMovieBinding.md = it
         })
     }
