@@ -55,7 +55,7 @@ class MovieDataSource(
                         }
                     },
                     {
-                        networkState.postValue(NetworkState.ERROR)
+                        networkState.postValue(NetworkState.END_OF_LIST)
                         Log.e("MovieDataSource", "${it.message}")
                     }
                 )
