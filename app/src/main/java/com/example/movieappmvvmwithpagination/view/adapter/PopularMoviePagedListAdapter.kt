@@ -111,7 +111,7 @@ class PopularMoviePagedListAdapter :
             if (networkSate != null && networkSate == NetworkState.ERROR) {
                 itemNetworkStateBinding.itemErrorText.text = networkSate.msg
                 itemNetworkStateBinding.itemErrorText.visibility = View.VISIBLE
-            } else if (networkSate != null && networkSate == NetworkState.END_OF_LIST) { // todo: check why "You have reached the end" is not shown
+            } else if (networkSate != null && networkSate == NetworkState.END_OF_LIST) {
                 itemNetworkStateBinding.itemErrorText.text = networkSate.msg
                 itemNetworkStateBinding.itemErrorText.visibility = View.VISIBLE
             } else {
