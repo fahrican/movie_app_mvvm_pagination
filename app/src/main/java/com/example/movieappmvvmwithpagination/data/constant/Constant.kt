@@ -7,6 +7,7 @@ const val FIRST_PAGE = 1
 const val POSTS_PER_PAGE = 20
 const val API_KEY = "api_key"
 const val INTENT_ID = "id"
+const val NUMBER_OF_COLUMNS = 3
 
 // NetworkState messages
 const val SUCCESS_TEXT = "success"

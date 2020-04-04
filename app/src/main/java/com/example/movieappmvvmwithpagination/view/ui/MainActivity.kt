@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movieappmvvmwithpagination.R
 import com.example.movieappmvvmwithpagination.data.api.ITheMovieDB
+import com.example.movieappmvvmwithpagination.data.constant.NUMBER_OF_COLUMNS
 import com.example.movieappmvvmwithpagination.data.repository.MoviePagedListRepository
 import com.example.movieappmvvmwithpagination.data.status.NetworkState
 import com.example.movieappmvvmwithpagination.di.DaggerApiComponent
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         DaggerApiComponent.create().inject(this)
 
         val movieAdapter = PopularMoviePagedListAdapter()
-        val gridLayoutManager = GridLayoutManager(this, 3)
+        val gridLayoutManager = GridLayoutManager(this, NUMBER_OF_COLUMNS)
         gridLayoutManager.spanSizeLookup = callbackGetSpanSizeLookup(movieAdapter)
 
         setUpRecyclerView(gridLayoutManager, movieAdapter)
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 val viewType = movieAdapter.getItemViewType(position)
                 // MOVIE_VIEW_TYPE will occupy 1 out of 3 span
                 // NETWORK_VIEW_TYPE will occupy all 3 span
-                return if (viewType == movieAdapter.MOVIE_VIEW_TYPE) 1 else 3
+                return if (viewType == movieAdapter.MOVIE_VIEW_TYPE) 1 else NUMBER_OF_COLUMNS
             }
         }
     }
