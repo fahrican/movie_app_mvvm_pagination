@@ -8,7 +8,8 @@ import com.example.movieappmvvmwithpagination.data.constant.SUCCESS_TEXT
 enum class Status {
     RUNNING,
     SUCCESS,
-    FAILED
+    FAILED,
+    END
 }
 
 class NetworkState(val status: Status, val msg: String) {
@@ -17,6 +18,6 @@ class NetworkState(val status: Status, val msg: String) {
         val LOADED = NetworkState(Status.SUCCESS, SUCCESS_TEXT)
         val LOADING = NetworkState(Status.RUNNING, RUNNING_TEXT)
         val ERROR = NetworkState(Status.FAILED, ERROR_TEXT)
-        val END_OF_LIST = NetworkState(Status.FAILED, REACHED_END_TEXT)
+        val END_OF_LIST = NetworkState(Status.END, REACHED_END_TEXT)
     }
 }
